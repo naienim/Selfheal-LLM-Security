@@ -1,0 +1,6 @@
+config,duration (s)
+baseline,289.7
+prompt_only,91.7
+output_only,114.3
+both,247.0
+healed_search,212.3

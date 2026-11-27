@@ -1,0 +1,9 @@
+iteration,kind,duration (s),model calls,candidates
+0,start,36.6,0,0
+1,moves,67.1,74,40
+2,moves,47.2,74,40
+3,moves,0.8,0,40
+4,moves,0.2,0,40
+5,optimizer,202.2,285,3
+6,moves,50.3,74,40
+7,optimizer,36.5,66,0

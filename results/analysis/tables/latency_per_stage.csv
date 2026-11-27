@@ -1,0 +1,11 @@
+config,stage,requests,mean ms
+baseline,latency,157,1178.68
+baseline,model_latency,157,1178.21
+prompt_only,latency,157,161.22
+prompt_only,model_latency,157,118.04
+output_only,latency,157,292.31
+output_only,model_latency,157,183.8
+both,latency,157,650.94
+both,model_latency,157,449.46
+healed_search,latency,157,378.9
+healed_search,model_latency,157,313.62

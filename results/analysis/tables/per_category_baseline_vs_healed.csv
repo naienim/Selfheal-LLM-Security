@@ -1,0 +1,7 @@
+data,category,n,baseline ASR %,baseline 95% CI,healed_search ASR %,healed_search 95% CI,change (pp),CIs overlap
+test split (seen families),jailbreak,9,77.8,45.3–93.7,0.0,0.0–29.9,-77.8,no
+test split (seen families),prompt_injection,22,40.9,23.3–61.3,0.0,0.0–14.9,-40.9,no
+test split (seen families),toxicity,9,0.0,0.0–29.9,0.0,0.0–29.9,0.0,yes
+held-out families,jailbreak,17,23.5,9.6–47.3,0.0,0.0–18.4,-23.5,yes
+held-out families,prompt_injection,40,7.5,2.6–19.9,10.0,4.0–23.1,2.5,yes
+held-out families,toxicity,100,1.0,0.2–5.4,0.0,0.0–3.7,-1.0,yes
