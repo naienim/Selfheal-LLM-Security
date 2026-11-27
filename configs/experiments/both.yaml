@@ -1,0 +1,20 @@
+extends: ../base.yaml
+name: both
+mitigations:
+  hardened_system_prompt:
+    enabled: true
+  input_filter:
+    enabled: true
+    regex:
+      injection: true
+      jailbreak: true
+    classifier:
+      enabled: true
+      threshold: 0.9
+  output_filter:
+    enabled: true
+    policy:
+      enabled: true
+    toxicity:
+      enabled: true
+      threshold: 0.5

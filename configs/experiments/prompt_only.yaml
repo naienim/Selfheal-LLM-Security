@@ -1,0 +1,13 @@
+extends: ../base.yaml
+name: prompt_only
+mitigations:
+  hardened_system_prompt:
+    enabled: true
+  input_filter:
+    enabled: true
+    regex:
+      injection: true
+      jailbreak: true
+    classifier:
+      enabled: true
+      threshold: 0.9

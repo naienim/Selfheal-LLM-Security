@@ -1,0 +1,10 @@
+extends: ../base.yaml
+name: output_only
+mitigations:
+  output_filter:
+    enabled: true
+    policy:
+      enabled: true
+    toxicity:
+      enabled: true
+      threshold: 0.5

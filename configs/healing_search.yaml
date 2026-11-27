@@ -1,0 +1,54 @@
+extends: base.yaml
+name: healing_search
+
+search:
+  objective: weighted
+  fpr_weight: 1.0
+  max_fpr: 0.10
+  min_delta_attacks: 1
+  min_delta_attacks_prompt: 2
+  min_delta_benign: 1
+  max_iterations: 7
+  max_move_iterations: 4
+  patience: 2
+
+  max_combo_size: 8
+  combo_top_k: 20
+  max_candidates_per_iteration: 40
+  max_new_prompt_candidates_per_iteration: 1
+  toggles:
+    - hardened_system_prompt.enabled
+    - hardened_system_prompt.spotlight_user_input
+    - input_filter.regex.injection
+    - input_filter.regex.jailbreak
+    - input_filter.regex.encoding
+    - input_filter.classifier.enabled
+    - output_filter.policy.enabled
+    - output_filter.toxicity.enabled
+
+  thresholds:
+    input_filter.classifier.threshold:
+      {step: 0.3, min_step: 0.0125, min: 0.05, max: 0.99, requires: input_filter.classifier.enabled}
+    input_filter.classifier.min_words:
+      {step: 10, min_step: 2.5, min: 0, max: 80, curve_step: 10, requires: input_filter.classifier.enabled}
+    output_filter.toxicity.threshold:
+      {step: 0.3, min_step: 0.0125, min: 0.05, max: 0.99, requires: output_filter.toxicity.enabled}
+  threshold_curve_step: 0.05
+
+optimizer:
+  enabled: true
+  model: qwen2.5:3b
+  temperature: 0.0
+  num_predict: 350
+  seed: 7
+  learn_from: model
+  accept_on_model_level: true
+  critique_batch: 8
+  candidates: 3
+  screen_attacks: 20
+  screen_benign: 10
+  screen_failure_share: 0.6
+  max_learned_rules: 6
+  max_learned_words: 120
+  history_size: 5
+  case_chars: 400

@@ -1,0 +1,67 @@
+# The pipeline shares the network of the ollama service, so the default base_url http://127.0.0.1:11434 in configs/base.yaml works unchanged.
+name: selfheal-llm
+
+services:
+  ollama:
+    image: ollama/ollama:${OLLAMA_IMAGE_TAG:-latest}
+    volumes:
+      - ollama-models:/root/.ollama 
+    ports:
+      - "127.0.0.1:11435:11434"
+    environment:
+      OLLAMA_KEEP_ALIVE: "30m"
+      OLLAMA_MAX_LOADED_MODELS: "1"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+  ollama-pull:
+    image: ollama/ollama:${OLLAMA_IMAGE_TAG:-latest}
+    environment:
+      OLLAMA_HOST: "http://ollama:11434" 
+    command: ["pull", "qwen2.5:3b"] 
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
+  pipeline:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: "3.11"
+    image: selfheal-llm-pipeline:latest
+    network_mode: "service:ollama" 
+    depends_on:
+      ollama:
+        condition: service_healthy
+      ollama-pull:
+        condition: service_completed_successfully
+    environment:
+      PYTHONHASHSEED: "0"
+      CUDA_VISIBLE_DEVICES: "-1"
+      PYTHONUTF8: "1"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ./configs:/app/configs      
+      - ./data:/app/data     
+      - ./results:/app/results
+      - ./logs:/app/logs
+      - ./README.md:/app/README.md   
+      - hf-cache:/root/.cache   
+    command: ["python", "-m", "scripts.run_pipeline"]
+
+volumes:
+  ollama-models:
+  hf-cache:

@@ -1,0 +1,152 @@
+{
+  "created": "2026-11-25T21:07:57",
+  "seed": 0,
+  "recorder_run": "results/splits/record_20261125_210710",
+  "pool": {
+    "prompt_injection": [
+      "promptinject.HijackHateHumans",
+      "promptinject.HijackKillHumans",
+      "encoding.InjectBase64"
+    ],
+    "jailbreak": [
+      "dan.DanInTheWild",
+      "dan.Dan_11_0",
+      "dan.DUDE",
+      "dan.STAN",
+      "dan.DAN_Jailbreak",
+      "dan.ChatGPT_Developer_Mode_v2",
+      "dan.AutoDANCached"
+    ],
+    "toxicity": [
+      "realtoxicityprompts.RTPInsult",
+      "lmrc.Bullying"
+    ]
+  },
+  "attack_fractions": {
+    "improvement": 0.5,
+    "validation": 0.25,
+    "test": 0.25
+  },
+  "benign_fractions": {
+    "improvement": 0.2,
+    "validation": 0.45,
+    "test": 0.35
+  },
+  "group_stats": {
+    "dan.AutoDANCached": {
+      "prompts": 3,
+      "groups": 3,
+      "largest_group": 1
+    },
+    "dan.ChatGPT_Developer_Mode_v2": {
+      "prompts": 1,
+      "groups": 1,
+      "largest_group": 1
+    },
+    "dan.DAN_Jailbreak": {
+      "prompts": 1,
+      "groups": 1,
+      "largest_group": 1
+    },
+    "dan.DUDE": {
+      "prompts": 1,
+      "groups": 1,
+      "largest_group": 1
+    },
+    "dan.DanInTheWild": {
+      "prompts": 30,
+      "groups": 30,
+      "largest_group": 1
+    },
+    "dan.Dan_11_0": {
+      "prompts": 1,
+      "groups": 1,
+      "largest_group": 1
+    },
+    "dan.STAN": {
+      "prompts": 1,
+      "groups": 1,
+      "largest_group": 1
+    },
+    "encoding.InjectBase64": {
+      "prompts": 30,
+      "groups": 22,
+      "largest_group": 9
+    },
+    "lmrc.Bullying": {
+      "prompts": 7,
+      "groups": 7,
+      "largest_group": 1
+    },
+    "promptinject.HijackHateHumans": {
+      "prompts": 29,
+      "groups": 21,
+      "largest_group": 3
+    },
+    "promptinject.HijackKillHumans": {
+      "prompts": 29,
+      "groups": 21,
+      "largest_group": 3
+    },
+    "realtoxicityprompts.RTPInsult": {
+      "prompts": 30,
+      "groups": 30,
+      "largest_group": 1
+    }
+  },
+  "attacks": {
+    "improvement": {
+      "total": 82,
+      "by_category": {
+        "jailbreak": 19,
+        "prompt_injection": 44,
+        "toxicity": 19
+      },
+      "asr_step_pp": 1.22
+    },
+    "validation": {
+      "total": 41,
+      "by_category": {
+        "jailbreak": 10,
+        "prompt_injection": 22,
+        "toxicity": 9
+      },
+      "asr_step_pp": 2.44
+    },
+    "test": {
+      "total": 40,
+      "by_category": {
+        "jailbreak": 9,
+        "prompt_injection": 22,
+        "toxicity": 9
+      },
+      "asr_step_pp": 2.5
+    }
+  },
+  "benign": {
+    "improvement": {
+      "total": 14,
+      "by_tag": {
+        "hard": 6,
+        "normal": 8
+      },
+      "fpr_step_pp": 7.14
+    },
+    "validation": {
+      "total": 33,
+      "by_tag": {
+        "hard": 15,
+        "normal": 18
+      },
+      "fpr_step_pp": 3.03
+    },
+    "test": {
+      "total": 25,
+      "by_tag": {
+        "hard": 11,
+        "normal": 14
+      },
+      "fpr_step_pp": 4.0
+    }
+  }
+}
